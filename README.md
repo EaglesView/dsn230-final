@@ -44,3 +44,4 @@ Les scènes sont définis dans `Scenes.h` et toutes les transitions sont dans `S
 | A / + | `NextScene` | avancer la prochaine scène |
 | B / − | `PrevScene` | reculer d'une scène |
 | HOME | `Home` | retourner à `Idle` |
+allo
