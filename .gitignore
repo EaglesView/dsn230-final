@@ -1,0 +1,24 @@
+# ---- Secrets -----------------------------------------------------------------
+# config.h ships with placeholders; if you split real credentials into a
+# separate file, ignore it here.
+firmware/esp32_controller/secrets.h
+
+# ---- Arduino / PlatformIO build artifacts ------------------------------------
+build/
+.pio/
+*.elf
+*.bin
+*.hex
+*.map
+
+# ---- TouchDesigner -----------------------------------------------------------
+# TD writes backups and a build folder next to the .toe file.
+touchdesigner/Backup/
+*.toe.*
+*.toeexpand/
+
+# ---- OS / editor -------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
