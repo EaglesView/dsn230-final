@@ -1,48 +1,46 @@
-# DSN230 Final — Wii Remote → ESP32 → TouchDesigner
+# DSN230 - Projet Final
 
-An interactive installation. A **Wii remote** sends input over Bluetooth to an
-**ESP32**, which runs a finite state machine and forwards state + live data to
-**TouchDesigner** over OSC (WiFi/UDP). Each state is a *scene* with its own
-visuals in TouchDesigner.
+Dépôt de l'expérience interactive bâti dans le cours DSN-230 du programme de Baccalauréat en Design UX à l'École de Technologie Supérieure (ÉTS).
 
-```
-  Wii Remote  ──Bluetooth──▶  ESP32 (FSM)  ──OSC / WiFi UDP──▶  TouchDesigner
-   buttons,                   decides the                       renders the
-   accelerometer              current scene                     current scene
-```
+Le but du projet est de créer une expérience interactive au tour d'un oeuil, possiblement contrôlé par touch designer. Les réactions face à l'oeuil, que ce soit engagés de facon tactile, par mouvement, ou par son, feront réagir les utilisateurs.
 
-## Repository layout
+## Coéquipiers
+- Laurian Deslauney
+- Zachary Courchesne
+- Éloïse Marcellus Clapin
+- Jean-Marc Bouchard
 
-| Path | What's in it |
+## Structure du dépôt
+
+| Chemin | Qu'est-ce qui à la-dedans? |
 |------|--------------|
-| `firmware/esp32_controller/` | Arduino sketch for the ESP32 — the FSM, Wii input, and OSC output. |
-| `touchdesigner/` | TouchDesigner project(s) and notes on the OSC mapping. |
-| `hardware/` | Wiring, parts list, pinout. |
-| `docs/` | Architecture notes and the state diagram. |
+| `firmware/esp32_controller/` | Code Arduino, machine à états finis, et le code du micro-controlleur. |
+| `touchdesigner/` | Toute la partie microcontrolleur |
+| `hardware/` | Informations et tableaux sur les composantes, pinout, etc. |
+| `docs/` | Notes d'architectures, diagrammes de conception, etc. |
 
-## Firmware quick start
+## quick start
 
-1. Open `firmware/esp32_controller/esp32_controller.ino` in the Arduino IDE
-   with the ESP32 board package installed.
-2. Install the libraries (Library Manager):
+1. Ouvrir `firmware/esp32_controller/esp32_controller.ino` dans l'IDE Arduino avec les paquets esp32 installés.
+2. Installer les libraries (Library Manager):
    - **OSC** (CNMAT / Adrian Freed)
    - **ESP32Wiimote** (bigw00d)
-3. Edit `config.h`: set your WiFi credentials and the IP/port of the computer
-   running TouchDesigner.
-4. Flash the ESP32. Open Serial Monitor at `115200` to watch state transitions.
-5. Press **1 + 2** on the Wii remote to pair.
+3. Modifier `config.h`: paramètrer le wifi et l'addresse IP de l'ordinateur qui roule TouchDesigner
+4. Flash l'ESP32. Ouvrir le *Serial Monitor* a `115200` pour voir les changements d'état
+5. Appuyer sur **1 + 2** sur la wiimote pour la connection.
 
-> Bench-testing without a Wii remote? Set `USE_WIIMOTE_LIB 0` in
-> `WiimoteInput.h` to compile a stub that auto-"connects".
+> Pas de wiimote?  `USE_WIIMOTE_LIB 0` dans
+> `WiimoteInput.h` pour compiler sans la wiimote".
 
-## The state machine
+## La machine à états finis
 
-See [`docs/architecture.md`](docs/architecture.md) for the full state diagram.
-Scenes are defined in `Scenes.h` and all transitions live in
-`StateMachine::decide()` — one place to read or change the whole behavior.
+voir [`docs/architecture.md`](docs/architecture.md) pour le diagramme d'états complet.
+Les scènes sont définis dans `Scenes.h` et toutes les transitions sont dans `StateMachine::decide()`.
+
+## TEMPORAIRE - Contrôles
 
 | Wii button | Event | Effect |
 |------------|-------|--------|
-| A / + | `NextScene` | advance to the next scene (wraps at the last) |
-| B / − | `PrevScene` | go to the previous scene |
-| HOME | `Home` | return to `Idle` |
+| A / + | `NextScene` | avancer la prochaine scène |
+| B / − | `PrevScene` | reculer d'une scène |
+| HOME | `Home` | retourner à `Idle` |
