@@ -1,0 +1,80 @@
+/* cartes lorsque cest pas notre tour .down-card
+
+    j'ai mix des animations (slide up, down) d'un css animation generator
+    (https://www.cssportal.com/css-animation-generator/)
+    que j'ai adapte pour mon projet, avec des transforms au cas ou je dois
+    les utiliser avec des classes css au lieu de re-render
+*/
+.down-card {
+    transform: translateY(50px);
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) all;
+}
+.anim-down-card {
+    animation: animDownCard 2s ease 0s 1 normal none;
+}
+@keyframes animDownCard {
+    0% {
+        transform: translateY(-130px);
+    }
+
+    100% {
+        transform: translateY(50px);
+    }
+}
+.default-card {
+    transform: translateY(0px);
+}
+/* default state des cards*/
+.up-card {
+    transform: translateY(-130px);
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) all;
+}
+.anim-up-card {
+    animation: animUpCard 2s ease 0s 1 normal none;
+}
+@keyframes animUpCard {
+    0% {
+        transform: translateY(50px);
+    }
+
+    100% {
+        transform: translateY(-130px);
+    }
+}
+.down-card-sm {
+    transform: translateY(-15px);
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) all;
+}
+.up-card-sm {
+    transform: translateY(0px);
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) all;
+}
+@keyframes pulsate {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+.pulsate {
+    animation: pulsate 15s ease-in-out infinite;
+}
+/* Va permettre nos tabs de jeu d'etre en 3D */
+.angled-tab-right {
+    transform: perspective(500px) translate3D(-20px, -25px, 0px)
+        rotate3d(1, -2, 1, 30deg);
+}
+.angled-tab-right-b {
+    transform: perspective(500px) translate3D(-20px, -25px, 0px)
+        rotate3d(-1, -2, 1, 30deg);
+}
+.angled-tab-left {
+    transform: perspective(500px) translate3D(20px, -25px, 0px)
+        rotate3d(1, 2, -1, 30deg);
+}
+.angled-tab-left-b {
+    transform: perspective(800px) translate3D(20px, 45px, 0px)
+        rotate3d(-0.5, 2, 0, 30deg);
+}

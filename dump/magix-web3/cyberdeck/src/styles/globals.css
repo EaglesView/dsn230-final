@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/**
+ Theme principal du jeu
+
+*/
+:root {
+  /*  Couleurs primordiales du ui  */
+  --primary: #F75049;
+  --secondary: #5EF6FF;
+  --background: #0E0E17;
+  --foreground: #FFFFFF;
+  --accent: #9D2BF5;
+  --destructive: #F75049;
+  --success: #1DED83;
+  /*  Couleurs de Jeu   */
+  --legendary: #FB932E;
+  --epic: var(--accent);
+  --rare: #2570D4;
+  --uncommon: var(--success);
+  --common: #D6D0D0;
+
+  /* Kitsch Colors */
+
+
+  /*  Polices d'écriture  */
+  --font-sans: Orbitron, sans-serif;
+  --font-serif: Rajdhani, serif;
+  --font-mono: Geist Mono, monospace;
+
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  /*jeu*/
+  --color-legendary: var(--legendary);
+  --color-epic: var(--epic);
+  --color-rare: var(--rare);
+  --color-uncommon: var(--uncommon);
+  --color-common: var(--common);
+  /*polices*/
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+/* Pour le Slider */
+input[type='range']::-webkit-slider-runnable-track {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: linear-gradient(to right,
+      var(--primary) 0%,
+      var(--primary) var(--fill-percent),
+      color-mix(in oklab, var(--primary) 30%, transparent) var(--fill-percent),
+      color-mix(in oklab, var(--primary) 30%, transparent) 100%);
+  height: 0.5rem;
+}
+
+input[type='range']::-moz-range-track {
+  background: linear-gradient(to right,
+      var(--primary) 0%,
+      var(--primary) var(--fill-percent),
+      color-mix(in oklab, var(--primary) 30%, transparent) var(--fill-percent),
+      color-mix(in oklab, var(--primary) 30%, transparent) 100%);
+  height: 0.5rem;
+  width: 100%;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  appearance: none;
+  background: color-mix(in oklab, var(--primary) 80%, transparent);
+  height: 0.5rem;
+  width: 2rem;
+  border: 2px solid var(--primary);
+  cursor: crosshair;
+}
+
+input[type='range']::-moz-range-thumb {
+  background: color-mix(in oklab, var(--primary) 80%, transparent);
+  height: 0.5rem;
+  width: 2rem;
+  border-radius: 0px;
+  border: 2px solid var(--primary);
+  cursor: crosshair;
+}
