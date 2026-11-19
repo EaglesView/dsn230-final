@@ -76,6 +76,7 @@ function EyeCanvasInner({ controls, onTelemetry, className = "relative w-full h-
               pupil: eye.handles.setPupil ? eye.pupil : null,
               press: eye.handles.applyPress ? eye.press : null,
               media: eye.handles.setMedia ? eye.mediaK : null,
+              wave: eye.handles.applyWave ? eye.waveK : null,
             });
             frames = 0;
             fpsStart = now;

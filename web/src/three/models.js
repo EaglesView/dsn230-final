@@ -80,6 +80,17 @@ function setupRealistic(root) {
     },
     getPupil: () => first.w[first.con] - first.w[first.dil],
     /**
+     * Open the pupil partway toward PupilDilate (k = 0..1) over the clip.
+     * Used for the camera's "waving" reaction. Call before applyPress.
+     */
+    applyWave(k) {
+      if (k <= 0) return;
+      for (const { w, dil, con } of slots) {
+        w[dil] += (1 - w[dil]) * k;
+        w[con] *= 1 - k;
+      }
+    },
+    /**
      * Blend "fully open" over whatever the clip / app set this frame.
      * k = 0 leaves it untouched, k = 1 is fully open. Call after setPupil
      * and after the mixer, every frame.

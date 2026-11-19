@@ -76,6 +76,13 @@ Choix dans **Admin → Rendu → Modèle** (`src/three/models.js`).
   (seule `Idle` est active pour la prévisualisation) et réexporter en mode *NLA Tracks*.
 - **Classique (Sketchfab)** — le modèle de départ.
 
+### Caméra: suivre les gens
+
+`tools/camera/server.py` (OpenCV, sur le PC) repère les visages et envoie le regard en
+WebSocket; personne → retour au centre. **Admin → Caméra**: choisir l'état FSM pendant
+lequel l'oeil suit les gens, ou la source **Caméra**. Lancer: `npm run camera`.
+Voir `tools/camera/README.md`.
+
 ### Média dans la pupille (touche F)
 
 Maintenir **F** (sur l'affichage ou l'admin) affiche une image ou une vidéo sur un disque

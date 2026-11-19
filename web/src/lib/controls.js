@@ -3,8 +3,11 @@ import { createStore } from "./store";
 /** Everything the dashboard can change on the eye display. */
 export const DEFAULT_CONTROLS = {
   fsm: "Idle",
-  input: "mouse", // mouse | pad | esp32
+  input: "mouse", // mouse | pad | esp32 | camera
   wsUrl: "ws://localhost:8787",
+  cameraUrl: "ws://localhost:8787", // tools/camera/server.py
+  cameraState: "", // FSM state that switches the input to the camera ("" = never)
+  waveDilate: 0.5, // how much the pupil opens while the followed person waves (0 = off)
   backend: "webgl", // webgl | webgpu
   model: "realistic", // realistic | classic  (see three/models.js)
   pupilAuto: true, // pupil follows the FSM state + noise

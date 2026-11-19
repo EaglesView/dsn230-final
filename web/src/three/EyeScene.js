@@ -87,6 +87,7 @@ export class EyeScene {
     this.pupil = 0;
     this.press = 0; // 0..1, eased toward gaze.pressed
     this.mediaK = 0; // 0..1, eased toward media.shown
+    this.waveK = 0; // 0..1, eased toward gaze.waving (camera)
     this.pupilMedia = new PupilMedia();
     this.mediaVersion = -1;
     this.handles = {};
@@ -237,6 +238,13 @@ export class EyeScene {
     if (this.mediaK < 1e-3 && !media.shown) this.mediaK = 0;
     this.pupilMedia.update(dt, this.mediaK > 0);
     this.handles.setMedia?.(this.pupilMedia.texture, this.pupilMedia.aspect, this.mediaK, c.mediaSize ?? 0.2);
+    // 8. Camera: the followed person waves -> open the pupil a little.
+    //    Fast in, gentle out; the state clip keeps running underneath.
+    const waveGoal = gaze.waving ? 1 : 0;
+    this.waveK += (waveGoal - this.waveK) * (1 - Math.exp(-(waveGoal > this.waveK ? 8 : 3) * dt));
+    if (this.waveK < 1e-3 && !gaze.waving) this.waveK = 0;
+    this.handles.applyWave?.(this.waveK * (c.waveDilate ?? 0.5));
+
     this.handles.applyPress?.(this.press);
     if (this.debug.visible) this.#updateDebug();
     this.renderer.render(this.scene, this.camera);

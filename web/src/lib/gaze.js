@@ -4,6 +4,8 @@
  *
  *  - mouse : pointer over the display window (temporary)
  *  - pad   : XY pad on the admin dashboard (via the bus)
+ *  - camera: WebSocket from tools/camera/server.py (OpenCV), same JSON as below;
+ *            it sends the center when nobody is in front of the camera
  *  - esp32 : WebSocket from the backend bridge. Browsers can't receive OSC/UDP,
  *            so the bridge forwards JSON: {"x":0.1,"y":-0.4} or {"gaze":[x,y]},
  *            {"press": true|false} for the press (e.g. a Wii remote button),
@@ -11,7 +13,7 @@
  */
 import { setMediaShown } from "./media";
 
-export const gaze = { x: 0, y: 0, lastInput: 0, pressed: false };
+export const gaze = { x: 0, y: 0, lastInput: 0, pressed: false, waving: false };
 
 /** "Press" = fully dilate the pupil while held (mouse button, bridge, dashboard). */
 export function setPressed(down) {
@@ -66,6 +68,7 @@ export function attachWebSocket(url, onStatus = () => {}) {
         const d = JSON.parse(e.data);
         if (typeof d.press === "boolean") setPressed(d.press);
         if (typeof d.media === "boolean") setMediaShown(d.media);
+        if (typeof d.wave === "boolean") gaze.waving = d.wave; // camera: followed person waves
         const [x, y] = Array.isArray(d.gaze) ? d.gaze : [d.x, d.y];
         if (Number.isFinite(x) && Number.isFinite(y)) setGaze(x, y);
       } catch {
@@ -74,6 +77,7 @@ export function attachWebSocket(url, onStatus = () => {}) {
     };
     ws.onclose = () => {
       onStatus("closed");
+      gaze.waving = false;
       if (!stopped) timer = setTimeout(connect, 2000);
     };
   };
@@ -82,5 +86,6 @@ export function attachWebSocket(url, onStatus = () => {}) {
     stopped = true;
     clearTimeout(timer);
     ws?.close();
+    gaze.waving = false;
   };
 }

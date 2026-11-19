@@ -71,11 +71,13 @@ export default function EyeView() {
     else setMediaSource({ kind: "demo" });
   }, [controls.mediaSource, controls.mediaUrl, mediaFile]);
 
-  // Input source.
+  // Input source. The camera takes over during its FSM state (see cameraState).
+  const input = controls.cameraState && controls.fsm === controls.cameraState ? "camera" : controls.input;
   useEffect(() => {
-    if (controls.input === "mouse") return attachMouse();
-    if (controls.input === "esp32") return attachWebSocket(controls.wsUrl, setWsStatus);
-  }, [controls.input, controls.wsUrl]);
+    if (input === "mouse") return attachMouse();
+    if (input === "esp32") return attachWebSocket(controls.wsUrl, setWsStatus);
+    if (input === "camera") return attachWebSocket(controls.cameraUrl, setWsStatus);
+  }, [input, controls.wsUrl, controls.cameraUrl]);
 
   const onTelemetry = (t) => {
     setTelemetry(t);
@@ -83,14 +85,14 @@ export default function EyeView() {
       type: "telemetry",
       id: clientId,
       role: embed ? "preview" : "display",
-      input: controlsStore.get().input,
+      input,
       ws: wsStatus,
       ...t,
     });
   };
 
   return (
-    <main className={`relative w-screen h-screen overflow-hidden bg-background ${controls.input === "mouse" ? "cursor-crosshair" : ""}`}>
+    <main className={`relative w-screen h-screen overflow-hidden bg-background ${input === "mouse" ? "cursor-crosshair" : ""}`}>
       <EyeCanvas controls={controls} onTelemetry={onTelemetry} className="absolute inset-0" />
 
       {controls.debug && telemetry && (
@@ -100,7 +102,7 @@ export default function EyeView() {
           <p>RENDU    {telemetry.backend}</p>
           <p>FPS      {telemetry.fps}</p>
           <p>ÉTAT     {controls.fsm}</p>
-          <p>ENTRÉE   {controls.input}{controls.input === "esp32" ? ` (${wsStatus})` : ""}</p>
+          <p>ENTRÉE   {input}{input === "esp32" || input === "camera" ? ` (${wsStatus})` : ""}</p>
           <p>
             REGARD   {telemetry.gaze[0].toFixed(2)}, {telemetry.gaze[1].toFixed(2)}
           </p>
@@ -108,6 +110,7 @@ export default function EyeView() {
           {telemetry.pupil != null && <p>PUPILLE  {telemetry.pupil.toFixed(2)}</p>}
           {telemetry.press != null && <p>PRESSION {telemetry.press.toFixed(2)}</p>}
           {telemetry.media != null && <p>MÉDIA    {telemetry.media.toFixed(2)} ({controls.mediaSource})</p>}
+          {telemetry.wave != null && <p>SALUT    {telemetry.wave.toFixed(2)}</p>}
         </aside>
       )}
 

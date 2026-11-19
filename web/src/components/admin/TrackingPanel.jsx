@@ -27,6 +27,7 @@ export default function TrackingPanel({ controls, update, sendGaze, sendPress })
               { value: "mouse", label: "Souris" },
               { value: "pad", label: "Pavé XY" },
               { value: "esp32", label: "ESP32" },
+              { value: "camera", label: "Caméra" },
             ]}
           />
           {controls.input === "esp32" && (

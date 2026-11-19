@@ -9,6 +9,7 @@ import DevicesPanel from "../components/admin/DevicesPanel";
 import LogPanel from "../components/admin/LogPanel";
 import ComponentLab from "../components/admin/ComponentLab";
 import MediaPanel from "../components/admin/MediaPanel";
+import CameraPanel from "../components/admin/CameraPanel";
 import { useAdminBus } from "../components/admin/useAdminBus";
 import { ToastProvider, useToast } from "../components/ui/Toast";
 import { Dialog, useDialog } from "../components/ui/Dialog";
@@ -73,6 +74,7 @@ function Dashboard() {
             <TrackingPanel controls={controls} update={update} sendGaze={sendGaze} sendPress={sendPress} />
             <RenderPanel controls={controls} update={update} />
             <MediaPanel controls={controls} update={update} sendMedia={sendMedia} sendMediaFile={sendMediaFile} />
+            <CameraPanel controls={controls} update={update} />
             <DevicesPanel fsm={controls.fsm} />
           </div>
           <LogPanel fire={fire} />
