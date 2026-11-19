@@ -5,7 +5,7 @@ Dépôt de l'expérience interactive bâti dans le cours DSN-230 du programme de
 Le but du projet est de créer une expérience interactive au tour d'un oeuil, possiblement contrôlé par touch designer. Les réactions face à l'oeuil, que ce soit engagés de facon tactile, par mouvement, ou par son, feront réagir les utilisateurs.
 
 ## Coéquipiers
-- Laurian Deslauney
+- Laurian Delauney
 - Zachary Courchesne
 - Éloïse Marcellus Clapin
 - Jean-Marc Bouchard
