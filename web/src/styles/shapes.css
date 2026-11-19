@@ -1,0 +1,33 @@
+/* Coupes en clip-path — reprises de magix-web3 (cyberdeck/src/styles/shapes.css) */
+.cut-br {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%);
+}
+.cut-sm-br {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 90% 100%, 0% 100%);
+}
+.cut-xs-br {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 95% 100%, 0% 100%);
+}
+.cut-xxs-br {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 98% 100%, 0% 100%);
+}
+.cut-sm-bl {
+  clip-path: polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%, 20% 74%, 22% 72%, 22% 60%, 20% 58%);
+}
+.cut-health {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 68%, 98% 100%, 0% 100%);
+}
+.cut-top-bevld {
+  clip-path: polygon(0% 0%, 30% 0%, 35% 5%, 65% 5%, 70% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Coupes à taille fixe (en px) pour les panneaux de hauteur variable */
+.cut-corner-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+}
+.cut-corner-tl {
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+}
+.cut-tab {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%);
+}

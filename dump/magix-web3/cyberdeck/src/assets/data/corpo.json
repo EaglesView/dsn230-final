@@ -1,0 +1,82 @@
+{
+  "warrior": {
+    "name": "Militech",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "The largest private military contractor in the world. Militech deploys heavily armored combat units across every battlefield.",
+    "hero_power": "Deploy Unit: Spawn a 1/2 taunt minion",
+    "faction_type": "Military Corporation",
+    "color": "#4a5568"
+  },
+  "priest": {
+    "name": "Trauma Team",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Platinum-grade medical response with full combat authorization. They'll save your life, then bill you for it.",
+    "hero_power": "Combat Stim: Give a random friendly minion +2/+1",
+    "faction_type": "Medical Corporation",
+    "color": "#e53e3e"
+  },
+  "hunter": {
+    "name": "Kang Tao",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Chinese weapons manufacturer specializing in smart weapons and tracking technology. Every target is marked, catalogued, eliminated.",
+    "hero_power": "Smart Link: Draw 1 card",
+    "faction_type": "Weapons Corporation",
+    "color": "#d69e2e"
+  },
+  "warlock": {
+    "name": "Voodoo Boys",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Haitian netrunner gang obsessed with breaching the Blackwall. They drain neural data like digital vampires.",
+    "hero_power": "Data Siphon: Leech 2 HP from the opponent's hero",
+    "faction_type": "Netrunner Gang",
+    "color": "#38b2ac"
+  },
+  "demonhunter": {
+    "name": "Arasaka",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "The most powerful megacorporation on Earth. Their operatives are surgical, precise, and absolutely ruthless.",
+    "hero_power": "Precision Strike: Deal 1 HP to the left+right most minions. 2 HP if 1 minion or 3 HP to the hero if no minion",
+    "faction_type": "Mega Corporation",
+    "color": "#e53e3e"
+  },
+  "rogue": {
+    "name": "Night Corp",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "The shadowy corporation that owns Night City itself. They operate from the darkness, secrets within secrets.",
+    "hero_power": "Shadow Operative: Spawn a 2/1 minion with charge and stealth",
+    "faction_type": "Corporate Espionage",
+    "color": "#2d3748"
+  },
+  "paladin": {
+    "name": "NCPD",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Night City Police Department. Underfunded, outgunned, but they show up in numbers when corpo interests are threatened.",
+    "hero_power": "Call Backup: Spawn two 1/1 minions",
+    "faction_type": "Law Enforcement",
+    "color": "#3182ce"
+  },
+  "shaman": {
+    "name": "Aldecaldos",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Nomad family clan from the Badlands. Masters of improvised tech, turrets, and guerrilla warfare.",
+    "hero_power": "Deploy Turret: Spawn a 0/1 minion that deals 2 HP to the opponent's hero at the end of your turn",
+    "faction_type": "Nomad Clan",
+    "color": "#dd6b20"
+  },
+  "druid": {
+    "name": "Biotechnica",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Bioengineering megacorp growing organic solutions to every problem. Life finds a way, especially when patented.",
+    "hero_power": "Biosynth Growth: Spawn a 1/1 minion, restore 2 HP to your hero",
+    "faction_type": "Biotech Corporation",
+    "color": "#38a169"
+  },
+  "mage": {
+    "name": "NetWatch",
+    "image_url": "/assets/heroes/default-hero.jpg",
+    "description": "Government netrunners policing the Net. Their quickhacks strike like lightning, random but devastating.",
+    "hero_power": "Cyber Attack: Randomly deal 3 HP to enemies",
+    "faction_type": "Government Agency",
+    "color": "#805ad5"
+  }
+}

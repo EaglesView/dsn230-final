@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "./shapes.css";
+
+/*
+  Thème — repris de magix-web3 (cyberdeck/src/styles/globals.css).
+  Mêmes couleurs, mêmes polices, sans les effets de glitch en shader.
+*/
+:root {
+  --primary: #f75049;
+  --secondary: #5ef6ff;
+  --background: #0e0e17;
+  --foreground: #ffffff;
+  --accent: #9d2bf5;
+  --destructive: #f75049;
+  --success: #1ded83;
+  --legendary: #fb932e;
+  --rare: #2570d4;
+  --common: #d6d0d0;
+
+  --font-sans: Orbitron, sans-serif;
+  --font-serif: Rajdhani, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-legendary: var(--legendary);
+  --color-rare: var(--rare);
+  --color-common: var(--common);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grille + scanlines en CSS pur (pas de shader) */
+.bg-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.scanlines {
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 2px,
+    rgb(0 0 0 / 0.18) 2px 3px
+  );
+}
+
+/* Slider — même look que magix-web3 */
+input[type="range"].cyber-range {
+  appearance: none;
+  background: transparent;
+  cursor: crosshair;
+}
+input[type="range"].cyber-range::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  background: linear-gradient(
+    to right,
+    var(--range-color) 0%,
+    var(--range-color) var(--fill-percent),
+    color-mix(in oklab, var(--range-color) 25%, transparent) var(--fill-percent),
+    color-mix(in oklab, var(--range-color) 25%, transparent) 100%
+  );
+}
+input[type="range"].cyber-range::-moz-range-track {
+  height: 0.5rem;
+  background: linear-gradient(
+    to right,
+    var(--range-color) 0%,
+    var(--range-color) var(--fill-percent),
+    color-mix(in oklab, var(--range-color) 25%, transparent) var(--fill-percent),
+    color-mix(in oklab, var(--range-color) 25%, transparent) 100%
+  );
+}
+input[type="range"].cyber-range::-webkit-slider-thumb {
+  appearance: none;
+  height: 1rem;
+  width: 1.5rem;
+  margin-top: -0.25rem;
+  background: var(--background);
+  border: 2px solid var(--range-color);
+}
+input[type="range"].cyber-range::-moz-range-thumb {
+  height: 0.75rem;
+  width: 1.25rem;
+  border-radius: 0;
+  background: var(--background);
+  border: 2px solid var(--range-color);
+}
+input[type="range"].cyber-range:focus-visible {
+  outline: 1px dashed var(--secondary);
+  outline-offset: 4px;
+}
+
+/* Scrollbar sobre */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--primary) 60%, transparent) transparent;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+.animate-blink {
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 180ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink,
+  .animate-toast-in {
+    animation: none;
+  }
+}

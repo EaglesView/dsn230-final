@@ -1,0 +1,43 @@
+.cut-wide-br {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 80% 100%, 0% 100%);
+}
+/*Ratio de 5:7 pour les cartes (2.5po par 3/5 po)*/
+.card-cut-border {
+clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 86% 100%, 0% 100%, 0% 0%, 2% 98%, 84% 98%, 98% 88%, 98% 2%, 2% 2%, 2% 98%);
+}
+.card-cut {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 86% 100%, 0% 100%, 0% 0%);
+}
+.card-cut-land {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 86%, 90% 100%, 0% 100%, 0% 0%);
+}
+.cut-br {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%);
+}
+{/* La barre de vie a un ratio de 16 pour 1 en moyenne, alors cest beau comme ca*/}
+.cut-health {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 68%, 98% 100%, 0% 100%, 0% 0%);
+}
+.bevel-tr {
+    clip-path: polygon(20% 20%, 75% 20%, 75% 60%, 80% 65%, 80% 80%, 20% 80%);
+}
+
+.bevel-br {
+    clip-path: polygon(20% 20%, 80% 20%, 80% 40%, 75% 45%, 75% 80%, 20% 80%);
+}
+
+.cut-sm-bl {
+    clip-path: polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%, 20% 74%, 22% 72%, 22% 60%, 20% 58%);
+}
+.cut-sm-br {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 90% 100%, 0% 100%);
+}
+.cut-xs-br {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 95% 100%, 0% 100%);
+}
+.cut-xxs-br {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 98% 100%, 0% 100%);
+}
+.cut-top-bevld {
+    clip-path: polygon(0% 0%, 30% 0%, 35% 5%, 65% 5%, 70% 0%, 100% 0%, 100% 100%, 0% 100%)
+}

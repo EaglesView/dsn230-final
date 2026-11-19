@@ -1,0 +1,656 @@
+{
+  "1": {
+    "name": "Rogue",
+    "image_url": "/assets/cards/rogue.webp",
+    "description": "Rogue Amendiares was a well-known solo during the 2010s in Night City, who became owner of the famous Afterlife nightclub, and was widely considered the city's best fixer by 2077. ",
+    "type": "fixer"
+  },
+  "2": {
+    "name": "Dakota Smith",
+    "image_url": "/assets/cards/dakota_smith.webp",
+    "description": "Dakota Smith , also known as the \"Mad Coyote\",[1] is a member of the Aldecaldos and one of the best fixers found in the Badlands, on the outskirts of Night City. She can be found spending most of her time in her own garage in the Rocky Ridge plains. ",
+    "type": "fixer"
+  },
+  "3": {
+    "name": "Sandra Dorsett",
+    "image_url": "/assets/cards/sandra_dorsett.webp",
+    "description": "At first glance, quiet, timid and cautious; at second glance, prudent and professional. She works a high-paying corpo job in an unspecified company - work she excels at. After hours she engages in unofficial netrunning for purposes known only to herself, a pastime she almost paid for with her life.",
+    "type": "fixer"
+  },
+  "4": {
+    "name": "Saburo Arasaka",
+    "image_url": "/assets/cards/saburo_arasaka.webp",
+    "description": "input",
+    "type": "corpo"
+  },
+  "5": {
+    "name": "Nash",
+    "image_url": "/assets/cards/nash_nomad.webp",
+    "description": "Nash was a member of the Wraiths, a group of Raffen Shiv who operated out of the Badlands and were mainly doing business in the fields of theft, murder, and chrome smuggling",
+    "type": "nomad"
+  },
+  "6": {
+    "name": "Yorinobu Arasaka",
+    "image_url": "/assets/cards/yorinobu_arasaka.webp",
+    "description": "The son of Saburo Arasaka, leader of the world's biggest arms manufacturing corporation. Ever since his young, rebellious years, there's been a lot of friction between Yorinobu and his father, though as to why - that's anyone's guess. Known for his difficult personality and controversial opinions, he doesn't fulfill any important role in Arasaka. Despite his urgent calls for change in the corporation, Yorinobu doesn't really want to take the helm - being a billionaire is currently much more fun",
+    "type": "corpo"
+  },
+  "7": {
+    "name": "Maiko",
+    "image_url": "/assets/cards/Maiko.webp",
+    "description": "Maiko Maeda is an associate of the Tyger Claws and works for them as the \"unofficial\" manager of Clouds. She used to be a doll there, but got promoted. Maiko used to be the output of Judy Álvarez when she worked there. Judy crushed on her hard and Maiko was implied to be borderline manipulative which led to a nasty break up.[1] The two have been estranged and cold to each other ever since, though Maiko stills cares about Judy in some way. ",
+    "type": "fixer"
+  },
+  "8": {
+    "name": "Short Circuit",
+    "image_url": "/assets/cards/short_circuit.webp",
+    "description": "deals a jolt of Electrical damage.",
+    "type": "quickhack"
+  },
+  "9": {
+    "name": "Contagion",
+    "image_url": "/assets/cards/contagion.webp",
+    "description": "infects the enemy with a virus that causes toxic cyberware substances to leak. ",
+    "type": "quickhack"
+  },
+  "10": {
+    "name": "Mr. Blue Eyes",
+    "image_url": "/assets/cards/mr_blue_eyes.webp",
+    "description": "People in the streets of Night City may be heard commenting on Mr. Blue Eye's existence through random banter. The common assumption is that he is always there, watching",
+    "type": "fixer"
+  },
+  "11": {
+    "name": "Jackie Welles",
+    "image_url": "/assets/cards/jackie_welles.webp",
+    "description": "A proud son of Heywood and an even prouder son of Mamá Welles.",
+    "type": "merc"
+  },
+  "12": {
+    "name": "Akira",
+    "image_url": "/assets/cards/akira.webp",
+    "description": "He was described by the Arasaka employees as the 'Hulk from hell.'",
+    "type": "corpo"
+  },
+  "13": {
+    "name": "Evelyn Parker",
+    "image_url": "/assets/cards/evelyn_parker.webp",
+    "description": "Evelyn Parker's intelligence and ambition drives her to demand more from life",
+    "type": "doll"
+  },
+  "14": {
+    "name": "Goro Takemura",
+    "image_url": "/assets/cards/goro_takemura.webp",
+    "description": "The only bodyguard of Saburo Arasaka who truly done fucked up.",
+    "type": "corpo"
+  },
+  "15": {
+    "name": "Chang-Hoon Nam",
+    "image_url": "/assets/cards/chang_hoon_nam.webp",
+    "description": "Nam has been an associate of Wakako Okada for years, as he was hand picked by her to do business. Ever since, he hasn't let her down once. ",
+    "type": "netrunner"
+  },
+  "16": {
+    "name": "Hanako Arasaka",
+    "image_url": "/assets/cards/hanako_arasaka.webp",
+    "description": "Hanako Arasaka (荒坂 華子) is the third child and only daughter to Saburo.",
+    "type": "corpo"
+  },
+  "17": {
+    "name": "Dexter Deshawn",
+    "image_url": "/assets/cards/dexter_deshawn.webp",
+    "description": "\"Dex never shot hoops, jumped roofs, or pulled a trigger. Likewise, he never felt the need to plant his fat *** in a netrunner's chair or splice cables in a sooty garage\"",
+    "type": "fixer"
+  },
+  "18": {
+    "name": "Sebastian Ibarra",
+    "image_url": "/assets/cards/sebastian_ibarra.webp",
+    "description": "Padre - Formerly a priest in the Valentinos, but after the bloodbath in Moto Cielo he converted to a more noble calling - that of the fixer.",
+    "type": "fixer"
+  },
+  "19": {
+    "name": "Synapse Burnout",
+    "image_url": "/assets/cards/synapse_burnout.webp",
+    "description": "deals high Physical damage",
+    "type": "quickhack"
+  },
+  "20": {
+    "name": "System Collapse",
+    "image_url": "/assets/cards/system_collapse.webp",
+    "description": "cripples the enemy's nervous system, knocking them out without making a sound. ",
+    "type": "quickhack"
+  },
+  "21": {
+    "name": "Judy Álvarez",
+    "image_url": "/assets/cards/judy_alvarez_alt.webp",
+    "description": "One of braindance's most gifted editors and a skilled techie.",
+    "type": "merc"
+  },
+  "22": {
+    "name": "Denzel Cryer",
+    "image_url": "/assets/cards/denzel_cryer.webp",
+    "description": "Denzel Cryer, aka. \"The Brain\" is affiliated with the Animals",
+    "type": "punk"
+  },
+  "23": {
+    "name": "Wakako Okada",
+    "image_url": "/assets/cards/wakako_okada.webp",
+    "description": "If you're looking for decent-paying gigs in Westbrook, go to the pachinko parlor on Jig-Jig Street run by a fixer named Wakako Okada.",
+    "type": "fixer"
+  },
+  "24": {
+    "name": "T-Bug",
+    "image_url": "/assets/cards/t_bug.webp",
+    "description": "T-Bug is a textbook example of how solos and netrunners really aren't all that different.",
+    "type": "netrunner"
+  },
+  "25": {
+    "name": "Johnny Silverhand",
+    "image_url": "/assets/cards/johnny_silverhand.webp",
+    "description": "Legendary rockerboy, terrorist, and engram. Never forgive, never forget.",
+    "type": "rocker"
+  },
+  "26": {
+    "name": "Panam Palmer",
+    "image_url": "/assets/cards/panam_palmer.webp",
+    "description": "Nomad and ex-Aldecaldo with a fierce spirit and unwavering loyalty.",
+    "type": "nomad"
+  },
+  "27": {
+    "name": "Morgan Blackhand",
+    "image_url": "/assets/cards/morgan_blackhand.webp",
+    "description": "The world's most dangerous solo. A living legend who disappeared after the Fourth Corporate War.",
+    "type": "solo"
+  },
+  "28": {
+    "name": "Rache Bartmoss",
+    "image_url": "/assets/cards/rache_bartmoss.webp",
+    "description": "The greatest netrunner who ever lived. Created the infamous Bartmoss Collective AI.",
+    "type": "netrunner"
+  },
+  "29": {
+    "name": "Adam Smasher",
+    "image_url": "/assets/cards/smasher.webp",
+    "description": "Arasaka's terrifying full-borg enforcer. More machine than man, and proud of it.",
+    "type": "corpo"
+  },
+  "30": {
+    "name": "Alt Cunningham",
+    "image_url": "/assets/cards/alt_cunningham.png",
+    "description": "Brilliant netrunner turned rogue AI. The architect of the Soulkiller program.",
+    "type": "netrunner"
+  },
+  "31": {
+    "name": "River Ward",
+    "image_url": "/assets/cards/river_ward.webp",
+    "description": "Former NCPD detective turned private investigator with a strong moral compass.",
+    "type": "lawman"
+  },
+  "32": {
+    "name": "Adam Smasher Prime",
+    "image_url": "/assets/cards/smasher_alt.webp",
+    "description": "Smasher at full combat capacity. A walking nightmare in chrome.",
+    "type": "corpo"
+  },
+  "33": {
+    "name": "Spider Murphy",
+    "image_url": "/assets/cards/spider_murphy.webp",
+    "description": "Elite netrunner from the legendary Blackhand team. Master of system infiltration.",
+    "type": "netrunner"
+  },
+  "34": {
+    "name": "Delamain",
+    "image_url": "/assets/cards/delamain.webp",
+    "description": "Sophisticated AI taxi service with fractured personalities and impeccable service.",
+    "type": "ai"
+  },
+  "35": {
+    "name": "Michiko Arasaka",
+    "image_url": "/assets/cards/michiko_sanderson.webp",
+    "description": "Daughter of Hanako Arasaka. The future of the Arasaka dynasty.",
+    "type": "corpo"
+  },
+  "36": {
+    "name": "Chase Coley",
+    "image_url": "/assets/cards/chase_coley.webp",
+    "description": "Media extraordinaire with connections throughout Night City's information networks.",
+    "type": "media"
+  },
+  "37": {
+    "name": "Dino Dinovic",
+    "image_url": "/assets/cards/dino_dinovic.webp",
+    "description": "Gun dealer and businessman operating in the seedier parts of Night City.",
+    "type": "fixer"
+  },
+  "38": {
+    "name": "Dennis Cranmer",
+    "image_url": "/assets/cards/dennis_cranmer.webp",
+    "description": "Former Aldecaldo nomad with deep knowledge of the Badlands.",
+    "type": "nomad"
+  },
+  "39": {
+    "name": "Johnny Silverhand (2020)",
+    "image_url": "/assets/cards/johnny_silverhand_alt.webp",
+    "description": "Silverhand in his prime during the Fourth Corporate War.",
+    "type": "rocker"
+  },
+  "40": {
+    "name": "V (Street Kid)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "A street kid merc from Heywood, clawing their way to the top of Night City.",
+    "type": "merc"
+  },
+  "41": {
+    "name": "Panam Palmer (Aldecaldo)",
+    "image_url": "/assets/cards/panam_palmer_alt.jpg",
+    "description": "Panam rejoined with the Aldecaldos, ready to defend her family.",
+    "type": "nomad"
+  },
+  "42": {
+    "name": "Morgan Blackhand (Shadow)",
+    "image_url": "/assets/cards/moragan_blackhand_alt.webp",
+    "description": "Blackhand operating from the shadows. Ghost of the past.",
+    "type": "solo"
+  },
+  "43": {
+    "name": "Judy Alvarez",
+    "image_url": "/assets/cards/judy_alvarez.webp",
+    "description": "Brilliant BD technician and rebel with a cause.",
+    "type": "techie"
+  },
+  "44": {
+    "name": "Kerry Eurodyne",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Former Samurai member, now solo rockerboy living in excess.",
+    "type": "rocker"
+  },
+  "45": {
+    "name": "Oda",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Arasaka's elite bodyguard. Silent, deadly, and absolutely loyal.",
+    "type": "corpo"
+  },
+  "46": {
+    "name": "Johnny Silverhand (Engram)",
+    "image_url": "/assets/cards/johnny_silverhand_alt_2.webp",
+    "description": "Digital ghost haunting V's mind. The man, the myth, the relic.",
+    "type": "rocker"
+  },
+  "47": {
+    "name": "Lizzy Wizzy",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Chromatic pop star who replaced her entire body. More machine than human.",
+    "type": "rocker"
+  },
+  "48": {
+    "name": "Saul Bright",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Leader of the Aldecaldos nomad clan. Protector of his people.",
+    "type": "nomad"
+  },
+  "49": {
+    "name": "Mitch Anderson",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Aldecaldo veteran with unmatched combat experience.",
+    "type": "nomad"
+  },
+  "50": {
+    "name": "NetWatch Agent",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Government netrunner policing the Old Net. Ruthlessly efficient.",
+    "type": "netrunner"
+  },
+  "51": {
+    "name": "Vic Vector",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Veteran ripperdoc from Watson. Your chrome installer and life advisor.",
+    "type": "ripperdoc"
+  },
+  "52": {
+    "name": "V (Nomad)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Former nomad turned merc, searching for their place in Night City.",
+    "type": "merc"
+  },
+  "53": {
+    "name": "Scorpion",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Legendary solo from the 2020s. Known for ruthless efficiency.",
+    "type": "solo"
+  },
+  "54": {
+    "name": "Shaitan",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Elite netrunner specializing in offensive programs and neural warfare.",
+    "type": "netrunner"
+  },
+  "55": {
+    "name": "MaxTac Operative",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "NCPD's psycho squad. Borged-out killers hunting cyberpsychos.",
+    "type": "lawman"
+  },
+  "56": {
+    "name": "Brendan",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "The vending machine with a soul. Just trying to understand humanity.",
+    "type": "ai"
+  },
+  "57": {
+    "name": "Sandayu Oda",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Arasaka's premier bodyguard with unmatched combat abilities.",
+    "type": "corpo"
+  },
+  "58": {
+    "name": "Matilda K. Rose",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Media personality and information broker with eyes everywhere.",
+    "type": "media"
+  },
+  "59": {
+    "name": "Clouds Doll",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Neural-enhanced doll providing the perfect experience.",
+    "type": "doll"
+  },
+  "60": {
+    "name": "Voodoo Boys Netrunner",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Haitian gang netrunner seeking to breach the Blackwall.",
+    "type": "netrunner"
+  },
+  "61": {
+    "name": "Placide",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Voodoo Boys heavy hitter. Brutal in meat and cyberspace.",
+    "type": "netrunner"
+  },
+  "62": {
+    "name": "Brigitte",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Voodoo Boys leader obsessed with piercing the Blackwall.",
+    "type": "netrunner"
+  },
+  "63": {
+    "name": "Misty Olszewski",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Esoteric shop owner with uncanny intuition about fate.",
+    "type": "merchant"
+  },
+  "64": {
+    "name": "Thompson",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Arasaka counter-intelligence officer. Cold and calculating.",
+    "type": "corpo"
+  },
+  "65": {
+    "name": "Sasquatch",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Animals gang enforcer. Massive, brutal, and chromed to the max.",
+    "type": "punk"
+  },
+  "66": {
+    "name": "Ozob Bozo",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Anarchist clown with a grenade for a nose. Chaos incarnate.",
+    "type": "punk"
+  },
+  "67": {
+    "name": "Hellman",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Arasaka scientist and creator of the Relic technology.",
+    "type": "corpo"
+  },
+  "68": {
+    "name": "Fingers",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Sleazy ripperdoc operating in Japantown. Cheap but unethical.",
+    "type": "ripperdoc"
+  },
+  "69": {
+    "name": "Claire Russell",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Afterlife bartender and street racer seeking vengeance.",
+    "type": "merc"
+  },
+  "70": {
+    "name": "Royce",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Maelstrom gang leader. More machine than man, by choice.",
+    "type": "punk"
+  },
+  "71": {
+    "name": "Scavenger",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Bottom-feeder gang harvesting cyberware from the dead and living.",
+    "type": "punk"
+  },
+  "72": {
+    "name": "Dum Dum",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Maelstrom lieutenant with volatile temperament and heavy chrome.",
+    "type": "punk"
+  },
+  "73": {
+    "name": "El Capitan",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Santo Domingo fixer with connections to the Valentinos.",
+    "type": "fixer"
+  },
+  "74": {
+    "name": "Woodman",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Clouds manager and Tyger Claws enforcer. Brutal and corrupt.",
+    "type": "punk"
+  },
+  "75": {
+    "name": "River Ward (Detective)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "NCPD detective on the trail of a serial killer.",
+    "type": "lawman"
+  },
+  "76": {
+    "name": "Rachel Casich",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Maelstrom's tech specialist and former corpo netrunner.",
+    "type": "netrunner"
+  },
+  "77": {
+    "name": "Reed",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "FIA sleeper agent operating in the shadows of Dogtown.",
+    "type": "agent"
+  },
+  "78": {
+    "name": "Songbird",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Netrunner with unprecedented abilities beyond the Blackwall.",
+    "type": "netrunner"
+  },
+  "79": {
+    "name": "Tyger Claws Bodyguard",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Yakuza-affiliated gang member protecting Japantown interests.",
+    "type": "punk"
+  },
+  "80": {
+    "name": "6th Street Veteran",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Patriotic gang member turned corporate mercenary.",
+    "type": "merc"
+  },
+  "81": {
+    "name": "Peralez",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Mayoral candidate with a dark secret buried in his mind.",
+    "type": "politician"
+  },
+  "82": {
+    "name": "Bartmoss Collective Fragment",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Rogue AI fragment from Bartmoss's digital consciousness.",
+    "type": "ai"
+  },
+  "83": {
+    "name": "Netrunner (Stealth)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Silent operator in cyberspace. In and out before detection.",
+    "type": "netrunner"
+  },
+  "84": {
+    "name": "Blackwall Guardian",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "AI construct protecting the barrier between nets.",
+    "type": "ai"
+  },
+  "85": {
+    "name": "Trauma Team Medic",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Elite medical response with platinum-tier protection.",
+    "type": "medic"
+  },
+  "86": {
+    "name": "Smasher (Military Grade)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Adam Smasher with full military-spec combat systems active.",
+    "type": "corpo"
+  },
+  "87": {
+    "name": "Santiago",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Elite Arasaka operative specializing in wetwork.",
+    "type": "corpo"
+  },
+  "88": {
+    "name": "Wraith Raider",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Nomad raider terrorizing the Badlands for chrome and supplies.",
+    "type": "nomad"
+  },
+  "89": {
+    "name": "Rogue AI",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Sentient program that escaped beyond the Blackwall.",
+    "type": "ai"
+  },
+  "90": {
+    "name": "Ripperdoc (Underground)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Black market chrome installer working in the shadows.",
+    "type": "ripperdoc"
+  },
+  "91": {
+    "name": "V (Corpo)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Former Arasaka counter-intel agent turned street mercenary.",
+    "type": "merc"
+  },
+  "92": {
+    "name": "Kang Tao Executive",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Corporate assassin from the rising Chinese megacorp.",
+    "type": "corpo"
+  },
+  "93": {
+    "name": "Colonel Hansen",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Militech warlord controlling Dogtown with an iron fist.",
+    "type": "military"
+  },
+  "94": {
+    "name": "Alex",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "FIA operative and Reed's former partner in espionage.",
+    "type": "agent"
+  },
+  "95": {
+    "name": "Nix",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Afterlife's resident netrunner and tech specialist.",
+    "type": "netrunner"
+  },
+  "96": {
+    "name": "Biotechnica Scientist",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Corporate researcher playing god with genetics and cybernetics.",
+    "type": "corpo"
+  },
+  "97": {
+    "name": "Quickhack Daemon",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Malicious program designed to confuse and disable targets.",
+    "type": "quickhack"
+  },
+  "98": {
+    "name": "Cyberpsycho",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Chrome-overloaded killer who lost their humanity to metal.",
+    "type": "psycho"
+  },
+  "99": {
+    "name": "Netwatch Warden",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Elite defender monitoring the Blackwall for breaches.",
+    "type": "netrunner"
+  },
+  "100": {
+    "name": "Ghost Runner",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Stealth netrunner specializing in undetected infiltration.",
+    "type": "netrunner"
+  },
+  "101": {
+    "name": "Fixer (Watson)",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Local connection broker moving goods and information.",
+    "type": "fixer"
+  },
+  "102": {
+    "name": "Phantom",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Urban legend. A shadow that hunts other shadows.",
+    "type": "solo"
+  },
+  "103": {
+    "name": "Trauma Team Captain",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Premium medical response leader with full combat authorization.",
+    "type": "medic"
+  },
+  "104": {
+    "name": "Information Broker",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Dealer in secrets, selling knowledge to the highest bidder.",
+    "type": "media"
+  },
+  "105": {
+    "name": "Suicide Bomber",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Desperate individual rigged with explosives and hacked cyberware.",
+    "type": "punk"
+  },
+  "106": {
+    "name": "Regina Jones",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Fixer specializing in cyberpsycho containment and rehabilitation.",
+    "type": "fixer"
+  },
+  "107": {
+    "name": "Combat Medic",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Field doctor keeping mercs alive in Night City's war zones.",
+    "type": "medic"
+  },
+  "108": {
+    "name": "Street Preacher",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Religious zealot healing the faithful in corpo dystopia.",
+    "type": "merchant"
+  },
+  "109": {
+    "name": "Data Miner",
+    "image_url": "/assets/cards/default-card.jpg",
+    "description": "Netrunner extracting valuable intel from corporate databases.",
+    "type": "netrunner"
+  }
+}
