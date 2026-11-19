@@ -22,3 +22,9 @@ touchdesigner/Backup/
 Thumbs.db
 .vscode/
 .idea/
+/assets/
+
+# ---- Web app -----------------------------------------------------------------
+# *.bin above is for firmware builds; glTF models need their .bin buffers.
+!web/public/models/**/*.bin
+node_modules/
