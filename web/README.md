@@ -22,8 +22,9 @@ Ouvre `/` dans un onglet et `/admin` dans un autre: le tableau de bord pilote l'
 ```
 src/
   three/
-    createRenderer.js   WebGL 2 ou WebGPU (choix au runtime, WebGPU chargé à la demande)
-    EyeScene.js         scène three.js pure: modèle, IBL, lumières, logique du regard
+    createRenderer.js   WebGPURenderer, en WebGPU ou forcé en WebGL 2 (choix au runtime)
+    models.js           modèles d'oeil disponibles + adaptation (orientation, matériau TSL)
+    EyeScene.js         scène three.js pure: modèle, IBL, lumières, regard, pupille, clips
   components/
     EyeCanvas.jsx       monte EyeScene dans React
     ui/                 kit d'interface (repris / inspiré de magix-web3)
@@ -40,13 +41,62 @@ src/
 
 ### Rendu: WebGL maintenant, WebGPU plus tard
 
-Le PBR fonctionne déjà en WebGL: le modèle utilise `MeshPhysicalMaterial`
-(base color, normal maps, rugosité, transmission `KHR_materials_transmission`)
-éclairé par une IBL (`RoomEnvironment` + `PMREMGenerator`) avec tone mapping AgX.
+Les deux options passent par `WebGPURenderer` (`three/webgpu`): « WebGL 2 » le force
+en WebGL 2, « WebGPU » utilise WebGPU (repli automatique en WebGL 2 si absent). Un seul
+chemin de rendu, donc les matériaux écrits en TSL (le langage de shaders de three)
+fonctionnent partout. PBR complet: `MeshPhysicalMaterial`, IBL (`RoomEnvironment` +
+`PMREMGenerator`), tone mapping AgX.
 
-Le moteur se change dans **Admin → Rendu → Moteur de rendu**. `WebGPU` utilise
-`WebGPURenderer` (`three/webgpu`) avec les mêmes matériaux; si le navigateur n'a pas
-WebGPU, three se replie sur son backend WebGL 2. Rien d'autre à changer dans le code.
+WebGPU sous Linux (Chromium): lancer avec
+`--ozone-platform=x11 --enable-unsafe-webgpu --enable-features=Vulkan --ignore-gpu-blocklist`
+(Vulkan n'est pas compatible avec Chromium en mode Wayland).
+
+### Modèles
+
+Choix dans **Admin → Rendu → Modèle** (`src/three/models.js`).
+
+- **Réaliste (Blender)** — généré par `tools/blender/rig_pupil.py` à partir de
+  `dump/Blender assets/RealisticEye.blend` (le fichier source n'est pas modifié):
+
+  ```bash
+  blender -b "dump/Blender assets/RealisticEye.blend" --python tools/blender/rig_pupil.py -- \
+    "dump/Blender assets/RealisticEye_rig.blend" web/public/models/realistic-eye/RealisticEye.glb
+  ```
+
+  Dans le .blend d'origine, la pupille est animée dans le shader (driver → bruit → UV),
+  ce que le glTF ne peut pas exporter. Le script reconstruit la sphère avec son pôle sur
+  la pupille et deux **shape keys** (`PupilDilate`, `PupilConstrict`) qui font glisser les
+  sommets de l'iris sur la photo (UV fixes → la pupille grossit / rapetisse), puis crée
+  **une action par état** (`Idle`, `Scene1`, … `Error`) sur des pistes NLA.
+  Un troisième shape key, `PupilFull`, n'est dans aucun clip: l'app le mélange par-dessus
+  l'animation de l'état pendant un **appui** (clic maintenu sur l'affichage, bouton
+  « Maintenir » de l'admin, ou `{"press": true|false}` via le pont WebSocket). Au
+  relâchement, l'animation de l'état, qui n'a jamais arrêté, reprend la main.
+  Pour retoucher les animations: ouvrir `RealisticEye_rig.blend`, éditer les pistes NLA
+  (seule `Idle` est active pour la prévisualisation) et réexporter en mode *NLA Tracks*.
+- **Classique (Sketchfab)** — le modèle de départ.
+
+### Média dans la pupille (touche F)
+
+Maintenir **F** (sur l'affichage ou l'admin) affiche une image ou une vidéo sur un disque
+au-dessus de la pupille, sous la cornée. Taille réglable, indépendante de la pupille.
+Source: démo, fichier choisi dans l'admin, ou URL (**Admin → Média dans la pupille**).
+Pont WebSocket: `{"media": true|false}`. Détails: `docs/realistic-eye.md` §9.
+
+### Animer dans Blender pour chaque état
+
+Explication complète du pipeline: [`docs/realistic-eye.md`](../docs/realistic-eye.md).
+
+Le glTF exporte: transformations d'objets, os (armature) et shape keys (morph targets).
+Il n'exporte **pas** les nodes de shaders ni les drivers. Pour animer par état:
+
+1. Animer avec des shape keys ou des os plutôt qu'avec des nodes (voir
+   `RealisticEye_rig.blend`: les shape keys `PupilDilate` / `PupilConstrict`).
+2. Nommer chaque action comme l'état: `Idle`, `Scene1`, `Scene2`, `Scene3`, `Error`, …
+   L'app joue automatiquement le clip du même nom (fondu de 0.4 s) quand l'état change.
+3. Ne pas animer la rotation de l'objet racine: l'app l'utilise pour le regard.
+4. Export: *Apply Modifiers* coché (sinon la subdivision est perdue), *Shape Keys* et
+   *Animation* cochés.
 
 ### Le regard
 

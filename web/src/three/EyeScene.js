@@ -2,6 +2,9 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { gaze } from "../lib/gaze";
+import { MODELS } from "./models";
+import { PupilMedia } from "./PupilMedia";
+import { media } from "../lib/media";
 
 const TONE_MAPPING = {
   none: THREE.NoToneMapping,
@@ -22,8 +25,32 @@ const STATE_COLOR = {
   Error: 0xf75049,
 };
 
+// Pupil target per FSM state (> 0 constricted, < 0 dilated), used when
+// "pupille auto" is on but the model has no clip for that state.
+const STATE_PUPIL = {
+  Boot: -0.4,
+  Connecting: -0.4,
+  Idle: 0.45,
+  Scene1: 0.2,
+  Scene2: -0.35,
+  Scene3: 0.75,
+  Error: 0.95,
+};
+
 const FORWARD = new THREE.Vector3(0, 0, 1); // the model's iris faces +Z
 const IDLE_AFTER_MS = 4000;
+
+/** Smooth 1D value noise in -1..1. */
+function noise1(x) {
+  const hash = (n) => {
+    const s = Math.sin(n * 127.1) * 43758.5453;
+    return (s - Math.floor(s)) * 2 - 1;
+  };
+  const i = Math.floor(x);
+  const t = x - i;
+  const k = t * t * (3 - 2 * t);
+  return hash(i) * (1 - k) + hash(i + 1) * k;
+}
 
 export class EyeScene {
   constructor({ renderer, PMREMGenerator }) {
@@ -57,6 +84,15 @@ export class EyeScene {
     this.wander = { x: 0, y: 0, next: 0 };
     this.output = { x: 0, y: 0 }; // where the eye is actually looking (NDC)
     this.time = 0;
+    this.pupil = 0;
+    this.press = 0; // 0..1, eased toward gaze.pressed
+    this.mediaK = 0; // 0..1, eased toward media.shown
+    this.pupilMedia = new PupilMedia();
+    this.mediaVersion = -1;
+    this.handles = {};
+    this.mixer = null;
+    this.clips = {};
+    this.playing = null;
 
     this.#buildDebug();
   }
@@ -70,10 +106,29 @@ export class EyeScene {
     pmrem.dispose();
   }
 
-  async load(url) {
-    const gltf = await new GLTFLoader().loadAsync(url);
+  async load(modelId) {
+    const def = MODELS[modelId] ?? MODELS.realistic;
+    const gltf = await new GLTFLoader().loadAsync(def.url);
+    this.handles = def.setup(gltf.scene) ?? {};
     this.model = gltf.scene;
     this.pivot.add(this.model);
+
+    // Clips named after an FSM state ("Idle", "Scene1", "Error", ...) play
+    // when that state is active — name the Blender actions that way.
+    this.mixer = new THREE.AnimationMixer(gltf.scene);
+    this.clips = Object.fromEntries(gltf.animations.map((c) => [c.name, c]));
+    this.#playStateClip(this.controls.fsm);
+  }
+
+  #playStateClip(state) {
+    if (!this.mixer) return;
+    // Auto mode: the Blender clip for this state drives the pupil.
+    const clip = this.controls.pupilAuto ? this.clips[state] : null;
+    const next = clip ? this.mixer.clipAction(clip) : null;
+    if (next === this.playing) return;
+    this.playing?.fadeOut(0.4);
+    next?.reset().fadeIn(0.4).play();
+    this.playing = next;
   }
 
   setControls(c) {
@@ -87,6 +142,7 @@ export class EyeScene {
     else r.setClearColor(BACKGROUND[c.background] ?? BACKGROUND.void, 1);
     this.rimGoal.set(STATE_COLOR[c.fsm] ?? STATE_COLOR.Idle);
     this.debug.visible = !!c.debug;
+    this.#playStateClip(c.fsm);
     this.axes.visible = !!c.debug;
   }
 
@@ -148,6 +204,40 @@ export class EyeScene {
     this.rim.color.lerp(this.rimGoal, 1 - Math.exp(-4 * dt));
     this.rim.intensity = c.fsm === "Error" ? 25 + Math.sin(this.time * 12) * 15 : 25;
 
+    // 5. Pupil: the state's clip if there is one, else a per-state target
+    //    + slow noise ("breathing"), or the manual value from the dashboard.
+    this.mixer?.update(dt);
+    if (this.handles.setPupil) {
+      if (c.pupilAuto && this.playing) {
+        this.pupil = this.handles.getPupil();
+      } else {
+        const goal = c.pupilAuto
+          ? (STATE_PUPIL[c.fsm] ?? 0.45) + noise1(this.time * 1.5) * 0.3
+          : c.pupil ?? 0;
+        this.pupil += (goal - this.pupil) * (1 - Math.exp(-6 * dt));
+        this.handles.setPupil(this.pupil);
+      }
+    }
+
+    // 6. Press: open fully, fast in / slower out, on top of the clip. On
+    //    release the state's clip (still running underneath) takes over again.
+    const pressGoal = gaze.pressed ? 1 : 0;
+    const rate = pressGoal > this.press ? 14 : 4;
+    this.press += (pressGoal - this.press) * (1 - Math.exp(-rate * dt));
+    if (this.press < 1e-3 && !gaze.pressed) this.press = 0;
+
+    // 7. Media (hold F): a disc of its own, shown over the pupil. Independent
+    //    of the pupil size and of the press.
+    if (media.version !== this.mediaVersion) {
+      this.mediaVersion = media.version;
+      this.pupilMedia.set(media.source);
+    }
+    const mediaGoal = media.shown ? 1 : 0;
+    this.mediaK += (mediaGoal - this.mediaK) * (1 - Math.exp(-(mediaGoal > this.mediaK ? 10 : 6) * dt));
+    if (this.mediaK < 1e-3 && !media.shown) this.mediaK = 0;
+    this.pupilMedia.update(dt, this.mediaK > 0);
+    this.handles.setMedia?.(this.pupilMedia.texture, this.pupilMedia.aspect, this.mediaK, c.mediaSize ?? 0.2);
+    this.handles.applyPress?.(this.press);
     if (this.debug.visible) this.#updateDebug();
     this.renderer.render(this.scene, this.camera);
   }
@@ -162,6 +252,7 @@ export class EyeScene {
       }
     });
     this.envMap?.dispose();
+    this.pupilMedia.dispose();
     this.renderer.dispose();
   }
 

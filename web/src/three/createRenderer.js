@@ -1,34 +1,27 @@
-import * as THREE from "three";
+import { WebGPURenderer, PMREMGenerator } from "three/webgpu";
 
 /**
- * Builds the renderer for the requested backend.
+ * Both backends go through WebGPURenderer so materials written in TSL
+ * (three's node shader language) work everywhere:
  *
- *  - "webgl"  : classic WebGLRenderer (WebGL 2). Full PBR: MeshStandard /
- *               MeshPhysical, IBL, transmission, normal maps, tone mapping.
- *  - "webgpu" : WebGPURenderer from three/webgpu. Same PBR materials (converted
- *               to node materials automatically). If the browser has no
- *               WebGPU, it falls back to its own WebGL 2 backend.
+ *  - "webgl"  : WebGPURenderer with forceWebGL — WebGL 2 backend.
+ *  - "webgpu" : real WebGPU; three falls back to WebGL 2 by itself when the
+ *               browser has no WebGPU.
  *
- * three/webgpu is imported lazily so the WebGL build stays small.
+ * Standard glTF materials (MeshStandard / MeshPhysical) are converted to node
+ * materials automatically, so full PBR works on both.
  */
 export async function createRenderer(backend, canvas) {
-  if (backend === "webgpu") {
-    const WEBGPU = await import("three/webgpu");
-    const renderer = new WEBGPU.WebGPURenderer({ canvas, antialias: true, alpha: true });
-    await renderer.init();
-    return {
-      renderer,
-      actual: renderer.backend?.isWebGPUBackend ? "webgpu" : "webgpu (repli webgl2)",
-      PMREMGenerator: WEBGPU.PMREMGenerator,
-    };
-  }
-  const renderer = new THREE.WebGLRenderer({
+  const renderer = new WebGPURenderer({
     canvas,
     antialias: true,
     alpha: true,
-    powerPreference: "high-performance",
+    forceWebGL: backend !== "webgpu",
   });
-  return { renderer, actual: "webgl2", PMREMGenerator: THREE.PMREMGenerator };
+  await renderer.init();
+  const isGPU = !!renderer.backend?.isWebGPUBackend;
+  const actual = isGPU ? "webgpu" : backend === "webgpu" ? "webgpu (repli webgl2)" : "webgl2";
+  return { renderer, actual, PMREMGenerator };
 }
 
 export function webgpuAvailable() {

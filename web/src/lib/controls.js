@@ -6,6 +6,12 @@ export const DEFAULT_CONTROLS = {
   input: "mouse", // mouse | pad | esp32
   wsUrl: "ws://localhost:8787",
   backend: "webgl", // webgl | webgpu
+  model: "realistic", // realistic | classic  (see three/models.js)
+  pupilAuto: true, // pupil follows the FSM state + noise
+  pupil: 0, // manual pupil: > 0 constricted, < 0 dilated
+  mediaSource: "demo", // demo | url | file  — what F shows in the pupil
+  mediaUrl: "",
+  mediaSize: 0.2, // media disc radius, in eye radii (pupil at rest ~0.19)
   followSpeed: 8, // 1/s — higher = snappier
   maxAngle: 40, // degrees
   focusDepth: 2.5, // distance of the virtual plane the eye looks at
