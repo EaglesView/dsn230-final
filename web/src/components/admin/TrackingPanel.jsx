@@ -5,9 +5,16 @@ import Slider from "../ui/Slider";
 import Toggle from "../ui/Toggle";
 import Input from "../ui/Input";
 import XYPad from "../ui/XYPad";
+import Button from "../ui/Button";
 
-export default function TrackingPanel({ controls, update, sendGaze }) {
+export default function TrackingPanel({ controls, update, sendGaze, sendPress }) {
   const [pad, setPad] = useState({ x: 0, y: 0 });
+  const [held, setHeld] = useState(false);
+  const hold = (down) => {
+    if (down === held) return;
+    setHeld(down);
+    sendPress(down);
+  };
   return (
     <Panel id="oeil" title="Suivi de l'oeil" code="//04">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -20,6 +27,7 @@ export default function TrackingPanel({ controls, update, sendGaze }) {
               { value: "mouse", label: "Souris" },
               { value: "pad", label: "Pavé XY" },
               { value: "esp32", label: "ESP32" },
+              { value: "camera", label: "Caméra" },
             ]}
           />
           {controls.input === "esp32" && (
@@ -47,6 +55,22 @@ export default function TrackingPanel({ controls, update, sendGaze }) {
             checked={controls.idleWander}
             onChange={(v) => update({ idleWander: v }, `Errance ${v ? "ON" : "OFF"}`)}
           />
+          <Toggle
+            label="Pupille automatique (animation Blender de l'état)"
+            checked={controls.pupilAuto}
+            onChange={(v) => update({ pupilAuto: v }, `Pupille auto ${v ? "ON" : "OFF"}`)}
+          />
+          <Slider
+            label="Pupille (− dilatée · + contractée)"
+            value={controls.pupil}
+            min={-1}
+            max={1}
+            step={0.05}
+            color="legendary"
+            format={(v) => (v > 0 ? "+" : "") + v.toFixed(2)}
+            disabled={controls.pupilAuto}
+            onChange={(v) => update({ pupil: v })}
+          />
         </div>
         <div>
           <p className="font-serif uppercase tracking-wider text-sm text-foreground/70 mb-1.5">Visée manuelle</p>
@@ -63,6 +87,23 @@ export default function TrackingPanel({ controls, update, sendGaze }) {
           {controls.input !== "pad" && (
             <p className="mt-1 font-serif text-xs text-legendary">Choisis « Pavé XY » comme source pour l’utiliser.</p>
           )}
+          <Button
+            variant="kitsch"
+            className="mt-4 w-full max-w-72 touch-none select-none"
+            active={held}
+            onPointerDown={(e) => {
+              e.currentTarget.setPointerCapture(e.pointerId);
+              hold(true);
+            }}
+            onPointerUp={() => hold(false)}
+            onPointerCancel={() => hold(false)}
+            onKeyDown={(e) => (e.key === " " || e.key === "Enter") && !e.repeat && hold(true)}
+            onKeyUp={(e) => (e.key === " " || e.key === "Enter") && hold(false)}
+            onBlur={() => hold(false)}
+          >
+            Maintenir: pupille ouverte
+          </Button>
+          <p className="mt-1 font-serif text-xs text-foreground/50">Ou clic maintenu sur l’affichage (source Souris).</p>
         </div>
       </div>
     </Panel>

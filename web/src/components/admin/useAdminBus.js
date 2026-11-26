@@ -13,6 +13,7 @@ export function useAdminBus() {
   const [history, setHistory] = useState({ x: [], y: [] });
   const primaryRef = useRef(null);
   const knownRef = useRef(new Set()); // ids already announced in the log
+  const fileRef = useRef(null); // last media file, re-sent to displays that join later
 
   useEffect(() => {
     const bus = createBus();
@@ -23,6 +24,7 @@ export function useAdminBus() {
     const off = bus.on((m) => {
       if (m.type === "hello") {
         bus.send({ type: "controls", controls: controlsStore.get() });
+        if (fileRef.current) bus.send({ type: "mediaFile", file: fileRef.current });
         if (!knownRef.current.has(m.id)) {
           knownRef.current.add(m.id);
           log(`Affichage connecté: ${m.id} (${m.role})`, "ok");
@@ -77,5 +79,11 @@ export function useAdminBus() {
   }, []);
 
   const sendGaze = (x, y) => busRef.current?.send({ type: "gaze", x, y });
-  return { displays: Object.values(displays), history, sendGaze };
+  const sendPress = (down) => busRef.current?.send({ type: "press", down });
+  const sendMedia = (show) => busRef.current?.send({ type: "media", show });
+  const sendMediaFile = (file) => {
+    fileRef.current = file;
+    busRef.current?.send({ type: "mediaFile", file });
+  };
+  return { displays: Object.values(displays), history, sendGaze, sendPress, sendMedia, sendMediaFile };
 }

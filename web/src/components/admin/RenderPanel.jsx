@@ -5,6 +5,7 @@ import Slider from "../ui/Slider";
 import Checkbox from "../ui/Checkbox";
 import Badge from "../ui/Badge";
 import { webgpuAvailable } from "../../three/createRenderer";
+import { MODELS } from "../../three/models";
 
 export default function RenderPanel({ controls, update }) {
   const gpu = webgpuAvailable();
@@ -16,6 +17,13 @@ export default function RenderPanel({ controls, update }) {
       actions={<Badge color={gpu ? "success" : "legendary"}>{gpu ? "WebGPU dispo" : "WebGPU absent"}</Badge>}
     >
       <div className="flex flex-col gap-5">
+        <Segmented
+          label="Modèle"
+          color="secondary"
+          value={controls.model}
+          onChange={(v) => update({ model: v }, `Modèle → ${v}`)}
+          options={Object.entries(MODELS).map(([value, m]) => ({ value, label: m.label }))}
+        />
         <Segmented
           label="Moteur de rendu"
           color="accent"

@@ -5,6 +5,8 @@ export const SECTIONS = [
   { id: "scenes", label: "Scènes / FSM" },
   { id: "oeil", label: "Suivi de l'oeil" },
   { id: "rendu", label: "Rendu" },
+  { id: "media", label: "Média pupille" },
+  { id: "camera", label: "Caméra" },
   { id: "appareils", label: "Appareils" },
   { id: "journal", label: "Journal" },
   { id: "composants", label: "Composants" },

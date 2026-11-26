@@ -11,6 +11,9 @@
  * Messages:
  *   { type: "controls", controls }                  admin   -> displays
  *   { type: "gaze", x, y }                          admin   -> displays (XY pad, NDC -1..1)
+ *   { type: "press", down }                         admin   -> displays (hold = pupil fully open)
+ *   { type: "media", show }                         admin   -> displays (hold = media in the pupil)
+ *   { type: "mediaFile", file }                     admin   -> displays (a File/Blob to show)
  *   { type: "hello", id, role }                     display -> admin (asks for controls)
  *   { type: "telemetry", id, role, fps, backend, gaze, input, ready }
  *   { type: "bye", id }                             display -> admin

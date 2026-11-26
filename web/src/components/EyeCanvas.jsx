@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { createRenderer } from "../three/createRenderer";
 import { EyeScene } from "../three/EyeScene";
 
-const MODEL_URL = `${import.meta.env.BASE_URL}models/eye/scene.gltf`;
-
 /**
- * Mounts the 3D eye. Changing `controls.backend` remounts with a fresh canvas
- * (a canvas can't switch from a WebGL to a WebGPU context).
+ * Mounts the 3D eye. Changing the backend or the model remounts with a fresh
+ * canvas (a canvas can't switch from a WebGL to a WebGPU context).
  */
 export default function EyeCanvas(props) {
-  return <EyeCanvasInner key={props.controls.backend} {...props} />;
+  const { backend, model } = props.controls;
+  return <EyeCanvasInner key={`${backend}:${model}`} {...props} />;
 }
 
 function EyeCanvasInner({ controls, onTelemetry, className = "relative w-full h-full" }) {
@@ -55,7 +54,7 @@ function EyeCanvasInner({ controls, onTelemetry, className = "relative w-full h-
 
         setStatus({ phase: "loading", error: null });
         eye
-          .load(MODEL_URL)
+          .load(controlsRef.current.model)
           .then(() => !disposed && setStatus({ phase: "ready", error: null }))
           .catch((err) => !disposed && setStatus({ phase: "error", error: String(err) }));
 
@@ -74,6 +73,10 @@ function EyeCanvasInner({ controls, onTelemetry, className = "relative w-full h-
               backend: made.actual,
               gaze: [eye.output.x, eye.output.y],
               ready: !!eye.model,
+              pupil: eye.handles.setPupil ? eye.pupil : null,
+              press: eye.handles.applyPress ? eye.press : null,
+              media: eye.handles.setMedia ? eye.mediaK : null,
+              wave: eye.handles.applyWave ? eye.waveK : null,
             });
             frames = 0;
             fpsStart = now;

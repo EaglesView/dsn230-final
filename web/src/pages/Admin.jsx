@@ -8,6 +8,8 @@ import RenderPanel from "../components/admin/RenderPanel";
 import DevicesPanel from "../components/admin/DevicesPanel";
 import LogPanel from "../components/admin/LogPanel";
 import ComponentLab from "../components/admin/ComponentLab";
+import MediaPanel from "../components/admin/MediaPanel";
+import CameraPanel from "../components/admin/CameraPanel";
 import { useAdminBus } from "../components/admin/useAdminBus";
 import { ToastProvider, useToast } from "../components/ui/Toast";
 import { Dialog, useDialog } from "../components/ui/Dialog";
@@ -36,7 +38,7 @@ function useActiveSection() {
 
 function Dashboard() {
   const controls = controlsStore.use();
-  const { displays, history, sendGaze } = useAdminBus();
+  const { displays, history, sendGaze, sendPress, sendMedia, sendMediaFile } = useAdminBus();
   const active = useActiveSection();
   const reset = useDialog();
   const toast = useToast();
@@ -69,8 +71,10 @@ function Dashboard() {
           <OverviewSection controls={controls} displays={displays} history={history} />
           <div className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
             <FsmPanel fsm={controls.fsm} fire={fire} force={force} />
-            <TrackingPanel controls={controls} update={update} sendGaze={sendGaze} />
+            <TrackingPanel controls={controls} update={update} sendGaze={sendGaze} sendPress={sendPress} />
             <RenderPanel controls={controls} update={update} />
+            <MediaPanel controls={controls} update={update} sendMedia={sendMedia} sendMediaFile={sendMediaFile} />
+            <CameraPanel controls={controls} update={update} />
             <DevicesPanel fsm={controls.fsm} />
           </div>
           <LogPanel fire={fire} />
